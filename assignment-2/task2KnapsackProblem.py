@@ -16,3 +16,4 @@ weights = [10, 20, 30]
 values = [60, 100, 120]
 capacity = 50
 print("Maximum value in 0-1 Knapsack:", knapsack(weights, values, capacity))
+git p
