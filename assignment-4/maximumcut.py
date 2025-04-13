@@ -18,10 +18,9 @@ arcs = [
   
 ]
 
-# Create a problem to maximize the flow from S to t.
+# Creates a problem to maximize the flow from S to t.
 max_flow = pulp.LpProblem("MaxFlow", pulp.LpMaximize)
 
-# Create a flow variable for each edge.
 # This variable represents how much water flows through that connection.
 flow = {(i, j): pulp.LpVariable(f"flow_{i}_{j}", lowBound=0, upBound=cap)
         for (i, j, cap) in arcs}

@@ -21,7 +21,7 @@ arcs = [
 # Creates a problem that minimizes the capacity of the cut edges.
 problem = pulp.LpProblem("MinimumCut", pulp.LpMinimize)
 
-# For each node, create a binary variable: 0 means the node is with S; 1 means it's with t.
+# For each node, this creates a binary variable: 0 means the node is with S; 1 means it is with t.
 group = {node: pulp.LpVariable(f"group_{node}", cat="Binary") for node in nodes}
 
 # For each edge, create a binary variable that becomes 1 if the edge goes from group 0 (S) to group 1 (t).
@@ -30,7 +30,7 @@ for (i, j, capacity) in arcs:
     cut_edge[(i, j)] = pulp.LpVariable(f"cut_{i}_{j}", cat="Binary")
     problem += cut_edge[(i, j)] >= group[j] - group[i]
 
-# Fix the groups for the source and sink.
+# Fixes the groups for the source and sink.
 problem += group['S'] == 0  # S must be in the S group(source).
 problem += group['t'] == 1  # t must be in the t group(sink).
 
